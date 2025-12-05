@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Loan Prediction</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Request DIV -->
+  <div>
+    <h2>Prediction Request</h2>
+    <form (ngSubmit)="predict()">
+      <ion-item>
+        <ion-label position="floating">Age</ion-label>
+        <ion-input type="number" [(ngModel)]="form.age" name="age" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Monthly Income</ion-label>
+        <ion-input type="number" [(ngModel)]="form.Monthly_Income" name="Monthly_Income" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Loan Tenure Applied</ion-label>
+        <ion-input type="number" [(ngModel)]="form.Loan_Tenure_Applied" name="Loan_Tenure_Applied" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">CIBIL Score</ion-label>
+        <ion-input type="number" [(ngModel)]="form.cibil_score" name="cibil_score" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Existing EMI</ion-label>
+        <ion-input type="number" [(ngModel)]="form.Existing_EMI" name="Existing_EMI" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Loan Amount Applied</ion-label>
+        <ion-input type="number" [(ngModel)]="form.Loan_Amount_Applied" name="Loan_Amount_Applied" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" type="submit">Predict</ion-button>
+    </form>
+  </div>
+
+  <!-- Response DIV -->
+  <div *ngIf="result" class="ion-margin-top">
+    <h2>Prediction Response</h2>
+    <ion-card>
+      <ion-card-content>
+        <p><strong>Prediction:</strong> {{ result.prediction }}</p>
+        <p><strong>Probability:</strong> {{ result.probability | percent:'1.0-2' }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>
