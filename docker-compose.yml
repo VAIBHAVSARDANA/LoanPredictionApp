@@ -15,7 +15,7 @@ services:
       - app-network
 
   fastapi:
-    build: ./fastapi
+    build: ./FastApiDocker/fastapi-loan-app
     container_name: fastapi-loan-container
     ports:
       - "8000:8000"
