@@ -26,7 +26,7 @@ services:
         condition: service_healthy
 
   restapi:
-    build: ./frontend-backend
+    build: ./RestApiDocker
     container_name: restapi-container
     ports:
       - "8080:8080"
