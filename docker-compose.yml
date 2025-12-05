@@ -1,26 +1,6 @@
-version: "3.9"
-
 services:
-  mysql:
-    image: loan_mysql_image
-    container_name: loan_mysql_container
-    environment:
-      MYSQL_ROOT_PASSWORD: Maroon5maps$
-      MYSQL_DATABASE: loan_risk_db
-      MYSQL_USER: loan_user
-      MYSQL_PASSWORD: loan_password
-    ports:
-      - "3307:3306"
-    networks:
-      - app-network
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 5s
-      retries: 5
-      timeout: 5s
-
   fastapi:
-    image: fastapi-loan-app
+    build: ./fastapi        # Build from local folder
     container_name: fastapi-loan-container
     ports:
       - "8000:8000"
@@ -31,7 +11,7 @@ services:
         condition: service_healthy
 
   restapi:
-    image: myfullstack-app
+    build: ./frontend-backend  # Build from local folder
     container_name: restapi-container
     ports:
       - "8080:8080"
@@ -48,7 +28,4 @@ services:
         condition: service_healthy
       fastapi:
         condition: service_started
-
-networks:
-  app-network:
-    driver: bridge
+s
